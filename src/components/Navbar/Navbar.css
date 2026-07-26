@@ -1,0 +1,133 @@
+.navbar {
+  width: 100%;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+}
+
+.navbar__logo:hover .navbar__logo-text {
+  color: var(--color-primary);
+}
+
+.navbar__logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-md);
+  text-transform: lowercase;
+}
+
+.navbar__logo-text {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-md);
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.navbar__lang {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  background: none;
+  border: none;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+  padding: var(--space-2xs) var(--space-2xs);
+  border-radius: var(--radius-sm);
+}
+
+.navbar__lang-icon {
+  font-size: var(--fs-sm);
+}
+
+.navbar__lang:hover {
+  color: var(--color-primary);
+}
+
+.navbar__login {
+  background: none;
+  border: none;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+  white-space: nowrap;
+  padding: var(--space-2xs) var(--space-2xs);
+  border-radius: var(--radius-sm);
+}
+
+.navbar__login:hover {
+  color: var(--color-primary);
+}
+
+.navbar__signup {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: var(--space-xs) var(--space-lg);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.navbar__signup:hover {
+  background: var(--color-black);
+}
+
+.navbar__signup:focus-visible {
+  outline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+  .navbar__lang {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__inner {
+    flex-wrap: wrap;
+    row-gap: var(--space-md);
+  }
+
+  .navbar__actions {
+    order: 1;
+    margin-left: auto;
+  }
+
+  .navbar__login {
+    display: none;
+  }
+}

@@ -1,0 +1,7 @@
+.coming-soon-link {
+  cursor: default;
+}
+
+.coming-soon-link:hover {
+  opacity: 0.7;
+}

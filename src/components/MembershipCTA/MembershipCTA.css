@@ -1,0 +1,140 @@
+.membership-cta__card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-soft);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4xl) var(--space-xl);
+  display: flex;
+  justify-content: center;
+}
+
+.membership-cta__content {
+  position: relative;
+  z-index: 2;
+  max-width: 440px;
+  text-align: center;
+}
+
+.membership-cta__title {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+}
+
+.membership-cta__subtext {
+  margin-top: var(--space-md);
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.membership-cta__button {
+  margin-top: var(--space-lg);
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: var(--space-sm) var(--space-xl);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+
+.membership-cta__button:hover {
+  background: var(--color-black);
+}
+
+.membership-cta__deco {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.membership-cta__deco--1 {
+  width: 220px;
+  height: 220px;
+  background: var(--color-pink-blob);
+  top: -80px;
+  left: -80px;
+  opacity: 0.8;
+}
+
+.membership-cta__deco--2 {
+  width: 260px;
+  height: 260px;
+  background: var(--color-purple-blob);
+  bottom: -120px;
+  right: -100px;
+  opacity: 0.7;
+}
+
+.membership-cta__avatar {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--color-bg);
+  z-index: 2;
+}
+
+.membership-cta__avatar .image-state {
+  width: 100%;
+  height: 100%;
+}
+
+.membership-cta__avatar--1 {
+  top: 20%;
+  left: 12%;
+}
+
+.membership-cta__avatar--2 {
+  top: 18%;
+  right: 14%;
+}
+
+.membership-cta__avatar--3 {
+  bottom: 14%;
+  right: 20%;
+}
+
+.membership-cta__icon {
+  position: absolute;
+  font-size: var(--fs-lg);
+  z-index: 2;
+}
+
+.membership-cta__icon--globe {
+  bottom: 22%;
+  left: 16%;
+}
+
+.membership-cta__icon--music {
+  top: 32%;
+  right: 8%;
+}
+
+.membership-cta__icon--sparkle {
+  bottom: 30%;
+  right: 26%;
+}
+
+@media (max-width: 1024px) {
+  .membership-cta__avatar,
+  .membership-cta__icon {
+    display: none;
+  }
+
+  .membership-cta__card {
+    padding: var(--space-3xl) var(--space-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .membership-cta__title {
+    font-size: var(--fs-xl);
+  }
+
+  .membership-cta__card {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+}
