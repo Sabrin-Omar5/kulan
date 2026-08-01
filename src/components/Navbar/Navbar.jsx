@@ -2,7 +2,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import { navLinks } from '../../data/siteData';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({ isAuthenticated, onLoginClick, onSignupClick, onAccountClick }) {
   return (
     <header className="navbar">
       <div className="navbar__inner container">
@@ -24,16 +24,20 @@ function Navbar() {
             </span>
             {navLinks.language}
           </button>
-          <button
-            className="navbar__login"
-            type="button"
-            title="Log in isn't available in this preview"
-          >
-            {navLinks.login}
-          </button>
-          <a href="#join" className="navbar__signup">
-            {navLinks.signup}
-          </a>
+          {isAuthenticated ? (
+            <button className="navbar__signup" type="button" onClick={onAccountClick}>
+              My account
+            </button>
+          ) : (
+            <>
+              <button className="navbar__login" type="button" onClick={onLoginClick}>
+                {navLinks.login}
+              </button>
+              <button className="navbar__signup" type="button" onClick={onSignupClick}>
+                {navLinks.signup}
+              </button>
+            </>
+          )}
         </div>
       </div>
     </header>
