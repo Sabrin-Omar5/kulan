@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useConvexAuth } from 'convex/react';
+import { DUMMYJSON_PRODUCTS_URL } from './api/dummyjson';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import NearbyEvents from './components/NearbyEvents/NearbyEvents';
@@ -18,11 +20,33 @@ function App() {
   const [view, setView] = useState('home');
   const [authMode, setAuthMode] = useState('signup');
 
+  const [productsStatus, setProductsStatus] = useState('loading');
+  const [products, setProducts] = useState([]);
+  const [productsError, setProductsError] = useState(null);
+
   useEffect(() => {
     if (isAuthenticated && view === 'auth') {
       setView('account');
     }
   }, [isAuthenticated, view]);
+
+  useEffect(() => {
+    fetch(DUMMYJSON_PRODUCTS_URL)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Request failed with status ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data.products);
+        setProductsStatus('success');
+      })
+      .catch((err) => {
+        setProductsError(err.message);
+        setProductsStatus('error');
+      });
+  }, []);
 
   return (
     <>
@@ -53,6 +77,26 @@ function App() {
             <PopularCities />
             <HowItWorks />
             <CommunityStories />
+
+            <section className="section" id="products">
+              <div className="container">
+                <div className="section-head">
+                  <h2 className="section-title">Products</h2>
+                </div>
+
+                {productsStatus === 'loading' && <p>Loading products…</p>}
+                {productsStatus === 'error' && <p>Couldn't load products: {productsError}</p>}
+                {productsStatus === 'success' && (
+                  <ul>
+                    {products.map((product) => (
+                      <li key={product.id}>
+                        <Link to={`/items/${product.id}`}>{product.title}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </section>
           </>
         )}
       </main>
