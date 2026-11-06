@@ -1,12 +1,33 @@
+import { useEffect, useState } from 'react';
 import { useQuery } from 'convex/react';
-import { useAuthActions } from '@convex-dev/auth/react';
+import { useAuthActions, useAuthToken } from '@convex-dev/auth/react';
 import { api } from '../../../convex/_generated/api';
+import { CONVEX_ACCOUNT_URL } from '../../api/convexHttp';
 import { SkeletonBox, SkeletonText } from '../common/Skeleton';
 import './AccountPage.css';
 
 function AccountPage({ onLoggedOut }) {
   const viewer = useQuery(api.users.viewer);
   const { signOut } = useAuthActions();
+  const token = useAuthToken();
+
+  const [protectedStatus, setProtectedStatus] = useState('loading');
+
+  useEffect(() => {
+    if (!token) return;
+
+    fetch(CONVEX_ACCOUNT_URL, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Request failed with status ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(() => setProtectedStatus('success'))
+      .catch(() => setProtectedStatus('error'));
+  }, [token]);
 
   const handleLogout = async () => {
     await signOut();
@@ -30,6 +51,9 @@ function AccountPage({ onLoggedOut }) {
               </span>
               <h1 className="account-page__name">{viewer?.name || 'Kulan member'}</h1>
               <p className="account-page__email">{viewer?.email}</p>
+              <p className="account-page__protected-status">
+                Protected request check: {protectedStatus}
+              </p>
               <button className="account-page__logout" type="button" onClick={handleLogout}>
                 Log out
               </button>
